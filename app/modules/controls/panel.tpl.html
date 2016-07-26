@@ -1,5 +1,4 @@
 <div id="panel">
   <h1 class="title">{{trainer.username}} <span class="tag is-info is-pulled-right">Level {{trainer.level}}</span></h1>
-
-  <progress class="progress is-info" value="50" max="100">{{xpPercent}}%</progress>
+  <progress class="progress is-info" :value="xpPercent" max="100">{{xpPercent}}%</progress>
 </div>

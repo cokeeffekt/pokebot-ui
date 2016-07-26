@@ -11,14 +11,14 @@ module.exports = Vue.extend({
 
     console.log('[i] Maps Ready', this.$el);
     this.map = new google.maps.Map(this.$el, {
-      center: new google.maps.LatLng(33.808678, -117.918921),
+      center: new google.maps.LatLng(35.0735877, -79.0578227),
       zoom: 18,
       streetViewControl: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     this.trainerMarker = createMarker({
-      position: new google.maps.LatLng(33.808678, -117.918921),
+      position: new google.maps.LatLng(35.0735877, -79.0578227),
       map: this.map,
       icon: '/img/trainer.png'
     }, 'Player');

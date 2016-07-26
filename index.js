@@ -24,7 +24,7 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function () {
     console.log('[!] Client disconnected to WS');
     // clean up
-    delete trainer;
+    trainer = undefined;
     trainer = new PokemonGO.Pokeio();
   });
 
