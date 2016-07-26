@@ -1,0 +1,33 @@
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card" style="max-width: 400px;">
+    <header class="modal-card-head">
+      <p class="modal-card-title has-text-centered">Pokemon GO Login</p>
+    </header>
+    <section class="modal-card-body">
+      <form @submit.prevent="login">
+        <p class="control has-icon">
+          <input class="input is-large" v-model="username" type="text" placeholder="Username" required>
+          <i class="fa fa-user"></i>
+        </p>
+        <p class="control has-icon">
+          <input class="input is-large" v-model="password" type="password" placeholder="Password" required>
+          <i class="fa fa-lock"></i>
+        </p>
+        <p class="control is-fullwidth">
+          <span class="select is-large is-fullwidth">
+          <select v-model="provider" placeholder="Account Type" required>
+            <option value="ptc">Pokemon Trainer Club</option>
+            <option value="google">Google</option>
+          </select>
+        </span>
+        </p>
+        <p class="control has-icon">
+          <input class="input is-large" type="text" v-model="location" placeholder="Location" required>
+          <i class="fa fa-map-marker"></i>
+        </p>
+        <button class="button is-primary is-large is-fullwidth" :class="{'is-loading': loading}">Login</button>
+      </form>
+    </section>
+  </div>
+</div>

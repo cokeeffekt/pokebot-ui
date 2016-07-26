@@ -1,0 +1,32 @@
+{
+  "name": "client",
+  "version": "0.0.1",
+  "homepage": "",
+  "dependencies": {
+    "detectizr": "~2.0.0",
+    "jquery": "~2.1.4",
+    "modernizr": "2.7.1",
+    "socket.io-client": "~1.4.8",
+    "vue": "^1.0.22",
+    "lodash": "^4.14.0",
+    "bulma": "^0.1.0",
+    "font-awesome": "fontawesome#^4.6.3"
+  },
+  "overrides": {
+    "socket.io-client": {
+      "main": "socket.io.js"
+    },
+    "modernizr": {
+      "main": "modernizr.js"
+    },
+    "lodash": {
+      "main": "dist/lodash.js"
+    },
+    "bulma": {
+      "main": "css/bulma.css"
+    },
+    "font-awesome": {
+      "main": "css/font-awesome.css"
+    }
+  }
+}

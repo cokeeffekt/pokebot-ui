@@ -1,0 +1,37 @@
+{
+  "name": "pokebot-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js; ./node_modules/.bin/brunch watch --server",
+    "dev": "./node_modules/.bin/brunch watch --server",
+    "installer": "npm install; bower install --config.interactive=false;"
+  },
+  "dependencies": {
+    "assetsmanager-brunch": "^1.8.1",
+    "brunch": "^2.5.3",
+    "clean-css-brunch": "^2.0.0",
+    "css-brunch": "^2.0.0",
+    "express": "^4.14.0",
+    "html2js-brunch": "git://github.com/cokeeffekt/html2js-brunch",
+    "javascript-brunch": "^2.0.0",
+    "jshint-brunch": "1.8.x",
+    "lodash": "^4.13.1",
+    "request": "^2.72.0",
+    "socket.io": "^1.4.8",
+    "stylus-brunch": "^2.0.0",
+    "uglify-js-brunch": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cokeeffekt/pokebot-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cokeeffekt/pokebot-ui/issues"
+  },
+  "homepage": "https://github.com/cokeeffekt/pokebot-ui#readme"
+}
