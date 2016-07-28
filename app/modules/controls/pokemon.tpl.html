@@ -1,0 +1,32 @@
+<div>
+  <table class="table is-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th class="has-text-centered">CP</th>
+        <th class="has-text-centered">Qty</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th class="has-text-centered">CP</th>
+        <th class="has-text-centered">Qty</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr v-for="poke in pkmonList">
+        <td class="is-icon">
+          <img :src="poke.pokedexInfo.img" class="image is-24x24" style="display: inline; min-width: 24px;">
+        </td>
+        <td>
+          {{poke.pokedexInfo.name}}
+        </td>
+        <td class="has-text-centered">{{poke.cp}}</td>
+        <td class="has-text-centered">{{poke.qty}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
