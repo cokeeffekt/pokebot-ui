@@ -69,8 +69,8 @@ module.exports = Vue.extend({
       this.trainerMarker.setPosition(new google.maps.LatLng(obj.latitude, obj.longitude));
     },
     fortLocation: function (obj) {
-      if (!this.markers[obj.FortId])
-        this.markers[obj.FortId] = createMarker({
+      if (!this.forts[obj.FortId])
+        this.forts[obj.FortId] = createMarker({
           position: new google.maps.LatLng(obj.Latitude, obj.Longitude),
           map: this.map,
           icon: '/img/pokestop.png'

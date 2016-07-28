@@ -3,8 +3,11 @@ Bot UI for [Armax/Pokemon-GO-node-api](git@github.com:Armax/Pokemon-GO-node-api.
 
 ### Setup
 needs node 5.5 ish, anything 4.2+ should work
+you will also need bower install globaly (npm install bower -g)
 
 ```npm start```
+
+if everything worked ok browse to http://localhost:5000/
 
 ### Task List
 
@@ -14,10 +17,10 @@ needs node 5.5 ish, anything 4.2+ should work
 - [ ] Advanced Trainer Stats
 - [X] Walk to location
 - [ ] Auto catch/Spin Pokestop
-- [ ] Detect location type (name/coord)
+- [X] Detect location type (name/coord)
 - [X] Farm radius from location
 - [ ] Follow Pokestop tour
-- [X] Display Pokestop on map
+- [X] Display Pokestops on map
 - [X] Pokemon List
 - [ ] Inventory List
 - [ ] Auto Transer Pokemon

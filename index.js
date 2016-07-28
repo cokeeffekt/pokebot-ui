@@ -21,10 +21,7 @@ io.on('connection', function (socket) {
   // login from client
   socket.on('login', function (obj) {
     trainer.loginObj = obj;
-    trainer.init(obj.username, obj.password, {
-      type: 'name',
-      name: obj.location
-    }, obj.provider, trainerInit);
+    trainer.init(obj.username, obj.password, locObj(obj.location), obj.provider, trainerInit);
   });
 
   socket.on('disconnect', function () {
@@ -66,14 +63,9 @@ io.on('connection', function (socket) {
       return console.sck('[i] Already walking a path');
 
     console.sck('[i] Building Walk Path');
-    geocoder.geocode(obj.location, function (err, data) {
-      if (err || data.status === 'ZERO_RESULTS') {
-        return console.sck('[!] Location look up failed!');
-      }
-      var _data$results$0$geome = data.results[0].geometry.location;
-      var lat = _data$results$0$geome.lat;
-      var lng = _data$results$0$geome.lng;
+    var loc = locObj(obj.location);
 
+    var bp = function (lat, lng) {
       var brng = sGeo.bearing(trainer.playerInfo.latitude, trainer.playerInfo.longitude, lat, lng);
       var dstnc = sGeo.distance(trainer.playerInfo.latitude, trainer.playerInfo.longitude, lat, lng);
       console.sck('[i] Walking to ' + lat + ', ' + lng + ', ' + '; deg:' + brng + '; dis:' + dstnc);
@@ -82,9 +74,23 @@ io.on('connection', function (socket) {
       trainer.walkingPath = sGeo.walkPoints(trainer.playerInfo.latitude, trainer.playerInfo.longitude, lat, lng, obj.speed * 3);
 
       walkTrainerPath();
-    });
-  });
+    };
 
+    if (loc.type == 'name') {
+      geocoder.geocode(loc.name, function (err, data) {
+        if (err || data.status === 'ZERO_RESULTS') {
+          return console.sck('[!] Location look up failed!');
+        }
+        var _data$results$0$geome = data.results[0].geometry.location;
+        var lat = _data$results$0$geome.lat;
+        var lng = _data$results$0$geome.lng;
+        bp(lat, lng);
+      });
+    }
+    if (loc.type == 'coords') {
+      bp(loc.coords.latitude, loc.coords.longitude);
+    }
+  });
 });
 
 // keep the client up to date with trainer status, dont need to do this too often
@@ -301,3 +307,22 @@ console.sck = function () {
 http.listen(5000, function () {
   console.log('listening on *:5000');
 });
+
+
+function locObj(input) {
+  var t = input.match(/([\-0-9]+\.[\-0-9]+)\W+([\-0-9]+\.[\-0-9]+)/);
+  if (t) {
+    return {
+      type: 'coords',
+      coords: {
+        latitude: parseFloat(t[1]),
+        longitude: parseFloat(t[2])
+      }
+    };
+  } else {
+    return {
+      type: 'name',
+      name: input
+    };
+  }
+}
