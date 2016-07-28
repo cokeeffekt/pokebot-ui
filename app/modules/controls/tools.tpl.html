@@ -1,0 +1,63 @@
+<div>
+  <form @submit.prevent="submitWalkTo">
+    <div class="card is-fullwidth">
+      <header class="card-header">
+        <p class="card-header-title">
+          Walk To
+        </p>
+        <a class="card-header-icon" @click.prevent="openTool('walkTo')">
+          <i class="fa" :class="{'fa-angle-down': walkTo.open, 'fa-angle-up': !walkTo.open}"></i>
+        </a>
+      </header>
+      <div class="card-content" v-if="walkTo.open">
+        <div class="content">
+          <p>Simple walk to location, will auto catch Pokemon and spin Pokestops along the way.</p>
+          <p class="control has-icon">
+            <input class="input is-small" type="text" v-model="walkTo.location" placeholder="Location" required>
+            <i class="fa fa-map-marker"></i>
+            <span class="help">Only accepts named locations for now.</span>
+          </p>
+          <p class="control has-icon">
+            <input class="input is-small" type="number" v-model="walkTo.speed" placeholder="Speed m/s" required>
+            <i class="fa fa-tachometer"></i>
+            <span class="help">Walking Speed in meters per second. (&lt;5 for egg hatching)</span>
+          </p>
+          <button class="button is-primary is-fullwidth">
+            <span class="icon"><i class="fa fa-play"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form @submit.prevent="submitFarmZone">
+    <div class="card is-fullwidth">
+      <header class="card-header">
+        <p class="card-header-title">
+          Farm Zone
+        </p>
+        <a class="card-header-icon" @click.prevent="openTool('farmZone')">
+          <i class="fa" :class="{'fa-angle-down': farmZone.open, 'fa-angle-up': !farmZone.open}"></i>
+        </a>
+      </header>
+      <div class="card-content" v-if="farmZone.open">
+        <div class="content">
+          <p>Farms from current location in a spiral out, return to start location when done. More config for this will come.</p>
+          <p class="control has-icon">
+            <input class="input is-small" type="number" v-model="farmZone.speed" placeholder="Speed m/s" required>
+            <i class="fa fa-tachometer"></i>
+            <span class="help">Walking Speed in meters per second. (&lt;5 for egg hatching)</span>
+          </p>
+          <p class="control has-icon">
+            <input class="input is-small" type="number" v-model="farmZone.loops" placeholder="Loops" required>
+            <i class="fa fa-bullseye"></i>
+            <span class="help">Number of loops to perform.</span>
+          </p>
+          <button class="button is-primary is-fullwidth">
+            <span class="icon"><i class="fa fa-play"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

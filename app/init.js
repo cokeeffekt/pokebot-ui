@@ -1,3 +1,4 @@
+window.eventLog = {};
 var pokeBot = new Vue({
   data: {
     trainer: {
@@ -19,7 +20,9 @@ var pokeBot = new Vue({
       prev_level_xp: 0,
       team: null,
       unique_pokedex_entries: 0,
-    }
+    },
+    inventory: [],
+    pokemon: []
   },
   components: {
     pokemap: require('modules/pokemap/map'),
@@ -39,7 +42,12 @@ var pokeBot = new Vue({
     this.socket.on('Evnt', function (eventType, obj) {
       $cope.$broadcast(eventType, obj);
       $cope.$emit(eventType, obj);
-      console.log('[e] ' + eventType, obj);
+      // for debuging in browser console.
+
+      window.eventLog[eventType] = {
+        time: Date(),
+        obj: obj
+      };
     });
 
     this.socket.on('disconnect', function () {
@@ -49,11 +57,15 @@ var pokeBot = new Vue({
 
     this.socket.on('consoleMsg', function (text, obj) {
       console.log(text, obj);
+      alertify.log(text);
     });
   },
 
   // app events
   events: {
+    emit: function (evnt, obj) {
+      this.socket.emit(evnt, obj);
+    },
     // give server login information
     login: function (obj) {
       this.socket.emit('login', obj);
@@ -64,8 +76,29 @@ var pokeBot = new Vue({
     trainerProfile: function (obj) {
       _.assign(this.trainer, obj);
     },
-    trainerInventory: function (obj) {
+    trainerStats: function (obj) {
       _.assign(this.trainer, obj);
+    },
+    pokemonList: function (list) {
+      var $cope = this;
+      // remove old pokemon from clients list
+      _.each(this.pokemon, function (p) {
+        var stillExist = _.find(list, {
+          sid: p.sid
+        });
+        if (!stillExist)
+          $cope.pokemon.$remove(p);
+      });
+      // upsert pokemon
+      _.each(list, function (p) {
+        var exist = _.find($cope.pokemon, {
+          sid: p.sid
+        });
+        if (exist)
+          _.assign(exist, p);
+        else
+          $cope.pokemon.push(p);
+      });
     }
   }
 });

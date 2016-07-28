@@ -1,4 +1,14 @@
 <div id="panel">
   <h1 class="title">{{trainer.username}} <span class="tag is-info is-pulled-right">Level {{trainer.level}}</span></h1>
   <progress class="progress is-info" :value="xpPercent" max="100">{{xpPercent}}%</progress>
+
+  <div class="tabs is-centered">
+    <ul>
+      <li :class="{'is-active':(showingPanel == 'pokemon')}"><a @click.prevent="setTab('pokemon')">Pokemon</a></li>
+      <li :class="{'is-active':(showingPanel == 'items')}"><a @click.prevent="setTab('items')">Items</a></li>
+      <li :class="{'is-active':(showingPanel == 'tools')}"><a @click.prevent="setTab('tools')">Tools</a></li>
+    </ul>
+  </div>
+
+  <partial :name="showingPanel"></partial>
 </div>

@@ -10,7 +10,8 @@
     "vue": "^1.0.22",
     "lodash": "^4.14.0",
     "bulma": "^0.1.0",
-    "font-awesome": "fontawesome#^4.6.3"
+    "font-awesome": "fontawesome#^4.6.3",
+    "alertifyjs": "^1.0.11"
   },
   "overrides": {
     "socket.io-client": {

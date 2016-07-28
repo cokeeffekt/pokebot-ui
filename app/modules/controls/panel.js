@@ -1,9 +1,16 @@
 module.exports = Vue.extend({
-  props: ['trainer'],
+  props: ['trainer', 'inventory', 'pokemon'],
   template: require('modules/controls/panel.tpl'),
+  mixins: [
+    require('modules/controls/pokemon.mixin'),
+    require('modules/controls/tools.mixin')
+  ],
+  partials: {
+    items: require('modules/controls/items.tpl.html')
+  },
   data: function () {
     return {
-
+      showingPanel: 'pokemon',
     };
   },
   ready: function () {
@@ -16,7 +23,9 @@ module.exports = Vue.extend({
     }
   },
   methods: {
-
+    setTab: function (panel) {
+      this.showingPanel = panel;
+    }
   }
 });
 

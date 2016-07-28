@@ -4,7 +4,10 @@ module.exports = Vue.extend({
     return {
       map: null,
       startLoc: null,
-      trainerMarker: null
+      trainerMarker: null,
+      walkPoly: false,
+      markers: {},
+      forts: {}
     };
   },
   ready: function () {
@@ -25,12 +28,53 @@ module.exports = Vue.extend({
 
   },
   events: {
-    locationPoint: function (obj) {
+    makeMarker: function (obj) {
+      this.markers[obj.name] = createMarker({
+        position: new google.maps.LatLng(obj.latitude, obj.longitude),
+        map: this.map
+      }, obj.name);
+    },
+    clearPolyMap: function () {
+      if (this.walkPoly) {
+        this.walkPoly.setMap(null);
+        this.walkPoly = false;
+      }
+    },
+    drawPath: function (obj) {
+      if (this.walkPoly) {
+        this.walkPoly.setMap(null);
+        this.walkPoly = false;
+      }
+      var walkPath = obj.path.map(function (c) {
+        return {
+          lat: c[0],
+          lng: c[1]
+        };
+      });
+      this.walkPoly = new google.maps.Polyline({
+        path: walkPath,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.2,
+        strokeWeight: 2
+      });
+      this.walkPoly.setMap(this.map);
+    },
+    trainerLocation: function (obj) {
       if (!this.startLoc) {
         this.map.setCenter(new google.maps.LatLng(obj.latitude, obj.longitude));
         this.startLoc = [obj.latitude, obj.longitude];
       }
+      localStorage.setItem('_location', obj.locationName);
       this.trainerMarker.setPosition(new google.maps.LatLng(obj.latitude, obj.longitude));
+    },
+    fortLocation: function (obj) {
+      if (!this.markers[obj.FortId])
+        this.markers[obj.FortId] = createMarker({
+          position: new google.maps.LatLng(obj.Latitude, obj.Longitude),
+          map: this.map,
+          icon: '/img/pokestop.png'
+        }, 'PokeStop');
     }
   }
 });

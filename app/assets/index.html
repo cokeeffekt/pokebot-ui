@@ -17,8 +17,9 @@
 
 <body id="pokeBot">
   <pokemap></pokemap>
-  <controls :trainer="trainer"></controls>
+  <controls :trainer="trainer" :inventory="inventory" :pokemon="pokemon"></controls>
   <login v-if="!trainer.auth"></login>
+  <div class="alertify-logs"></div>
 </body>
 
 </html>
