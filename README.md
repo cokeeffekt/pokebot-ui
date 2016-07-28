@@ -33,5 +33,5 @@ if everything worked ok browse to http://localhost:5000/
 ![alt tag](https://github.com/cokeeffekt/pokebot-ui/blob/master/screens/main.jpg?raw=true)
 ![alt tag](https://github.com/cokeeffekt/pokebot-ui/blob/master/screens/farm.jpg?raw=true)
 
-## Dependancy Mentions
+## Dependency Mentions
 Pokemon Node API: [Armax/Pokemon-GO-node-api](git@github.com:Armax/Pokemon-GO-node-api.git)
