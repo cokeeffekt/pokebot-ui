@@ -30,8 +30,8 @@ if everything worked ok browse to http://localhost:5000/
 - [ ] Code Cleanup
 
 ## Screen Shots
-![alt tag](https://github.com/cokeeffekt/pokebot-ui/raw/master/screens/main.png)
-![alt tag](https://github.com/cokeeffekt/pokebot-ui/raw/master/screens/farm.png)
+![alt tag](https://github.com/cokeeffekt/pokebot-ui/blob/master/screens/main.jpg?raw=true)
+![alt tag](https://github.com/cokeeffekt/pokebot-ui/blob/master/screens/farm.jpg?raw=true)
 
 ## Dependancy Mentions
 Pokemon Node API: [Armax/Pokemon-GO-node-api](git@github.com:Armax/Pokemon-GO-node-api.git)
